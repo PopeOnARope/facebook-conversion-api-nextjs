@@ -39,6 +39,7 @@ const fbEventsHandler = (req: NextApiRequest, res: NextApiResponse) => {
     products,
     value,
     currency,
+    testEventCode
   } = req.body as FBEventType;
 
   if (!eventName || !products || products?.length < 1) {
@@ -56,14 +57,14 @@ const fbEventsHandler = (req: NextApiRequest, res: NextApiResponse) => {
     getClientUserAgent(req),
     getClientFbp(req),
     getClientFbc(req),
-    (process.env.NEXT_PUBLIC_FB_DEBUG === 'true'),
+    (process.env.NEXT_PUBLIC_FB_DEBUG === 'true')
   );
 
   products.forEach((product) => {
     FBConversionAPI.addProduct(product.sku, product.quantity);
   });
 
-  FBConversionAPI.sendEvent(eventName, getClientRefererUrl(req), { value, currency }, { eventId });
+  FBConversionAPI.sendEvent(eventName, getClientRefererUrl(req), { value, currency }, { eventId }, testEventCode);
 
   return res.status(200).json({
     status: 'Success',

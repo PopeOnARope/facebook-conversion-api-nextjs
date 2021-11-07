@@ -25,7 +25,7 @@ const fbEventsHandler = (req, res) => {
     if (!process.env.NEXT_PUBLIC_FB_PIXEL_ID) {
         throw new Error('Missing NEXT_PUBLIC_FB_PIXEL_ID in environment file.');
     }
-    const { eventName, eventId, emails, phones, products, value, currency, } = req.body;
+    const { eventName, eventId, emails, phones, products, value, currency, testEventCode } = req.body;
     if (!eventName || !products || (products === null || products === void 0 ? void 0 : products.length) < 1) {
         return res.status(400).json({
             error: 'The request body is missing required parameters',
@@ -35,7 +35,7 @@ const fbEventsHandler = (req, res) => {
     products.forEach((product) => {
         FBConversionAPI.addProduct(product.sku, product.quantity);
     });
-    FBConversionAPI.sendEvent(eventName, (0, request_1.getClientRefererUrl)(req), { value, currency }, { eventId });
+    FBConversionAPI.sendEvent(eventName, (0, request_1.getClientRefererUrl)(req), { value, currency }, { eventId }, testEventCode);
     return res.status(200).json({
         status: 'Success',
     });

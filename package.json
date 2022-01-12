@@ -24,7 +24,7 @@
   },
   "homepage": "https://github.com/RivercodeAB/facebook-conversion-api-nextjs#readme",
   "dependencies": {
-    "@rivercode/facebook-conversion-api": "https://github.com/jeremylynch/facebook-conversion-api/tarball/master",
+    "@rivercode/facebook-conversion-api": "https://github.com/popeonarope/facebook-conversion-api/tarball/master",
     "universal-cookie": "^4.0.4",
     "uuid": "^8.3.2"
   },
